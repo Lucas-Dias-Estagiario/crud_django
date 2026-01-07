@@ -1,0 +1,19 @@
+
+body{
+    background-color: rgb(173, 180, 106);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;    
+}
+.card{
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.card:hover{
+    background-color: #d6d2d2;
+    scale: 1.09;
+}

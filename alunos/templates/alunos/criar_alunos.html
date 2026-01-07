@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aluno Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container"> 
+        <form action="{% url "criar_aluno" %}" method="POST">
+          <br>
+          <br>
+          <label for="">Nome:</label>
+          <input type="text" name="nome" class="form-control" placeholder="Digite seu nome aqui:">
+          <br>
+          <label for="">Email:</label>
+          <input type="email" name="email" class="form-control" placeholder="Digite seu Email aqui:">
+          <br>
+          <br>
+          <input type="submit" value="Cadastrar aluno" class="btn btn-success">
+          </input>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>
