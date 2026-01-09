@@ -1,38 +1,35 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 import requests
 
-# Create your views here.
 def home(request, pokemon_id):
-    # CORREÇÃO 2: Coloquei o 'f' antes da string para o Python substituir o valor
     url = f"https://pokeapi.co/api/v2/pokemon/{pokemon_id}/"
     
     response = requests.get(url)
-    
-    # Dica: Se o ID não existir (ex: 9999), vai dar erro aqui. 
-    # O ideal seria verificar if response.status_code == 200, mas vamos manter simples.
     poke_dado = response.json()
 
-    # Como é um pokemon só, não usamos o primeiro 'for' que você tinha.
-    # Vamos direto para o tratamento dos tipos.
+ 
     tipos = []
     for t in poke_dado['types']:
         tipos.append(t['type']['name'])
 
-    # Montamos o dicionário único
+    peso_kg = poke_dado['weight']
+    peso_kg = peso_kg / 10
+
+    altura_m = poke_dado['height']
+    altura_m = altura_m / 10
+
     pokemon_unico = {
         'name': poke_dado['name'],
         'image': poke_dado['sprites']['front_default'],
-        'height': poke_dado['height'],
-        'weight': poke_dado['weight'],
+        'height': altura_m,
+        'weight': peso_kg,
         'types': tipos,
         'id': poke_dado['id'],
     }
     
-    # CORREÇÃO 3: O seu HTML espera uma lista (por causa do {% for %}).
-    # Então colocamos esse único dicionário dentro de uma lista.
     pokemons = [pokemon_unico]
-
+    # return HttpResponse(poke_dado['types'])
     return render(request, 'pokedex/home.html', {'pokemons': pokemons})
 
 
@@ -44,4 +41,17 @@ def home(request, pokemon_id):
 
     # return render(request, 'pokedex/home.html', {'pokemons': pokemons})
 
+def proximo_pokemon(request, pokemon_id):
+    pokemon_id = pokemon_id + 1
+
+    return redirect('pokedex:index', pokemon_id=pokemon_id)
+
+def anterior_pokemon(request, pokemon_id):
+    pokemon_id = pokemon_id - 1
+
+    return redirect('pokedex:index', pokemon_id=pokemon_id)
+
+def ultimo_pokemon(request, pokemon_id):
+    pokemon_id = 1025
     
+    return redirect('pokedex:index', pokemon_id=pokemon_id)

@@ -1,0 +1,81 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 90vh;
+    /* background-image: url('images/background.jpg'); */
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:row;
+    width: 80%;
+    height: 90%;
+}
+.card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: fit-content;
+    width: 40%;
+    background: linear-gradient(160deg, rgb(128, 194, 128), rgb(46, 92, 46));
+    border: 5px solid #FF5733;
+}
+.nome_pokemon{
+    font-size: 49px ;
+    margin: 6px;
+}
+.id_pokemon{
+    font-size: 17px ;
+    margin: 9px;
+    
+}
+.imagen{
+    width: 30%;
+}
+.tipo{
+    font-size: 26px ;
+    background-color: #aca6a5;
+    padding: 9px;
+    border-radius: 10px;
+}
+
+.altura{
+    font-size: 29px ;
+}
+.peso{
+    font-size: 29px ;
+}
+.box_h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    font-size: 60px;
+    text-decoration: underline;
+}
+
+.btn_voltar{
+    margin: 30px;
+    background-color: #659461;
+    height: 55px;
+    width: 80px;
+    font-weight: bolder;
+    font-size: large;
+}
+
+.btn_ultimo{
+    height: 90px;
+    margin: 30px;
+}
+.btn_avancar {
+    margin: 30px;
+    height: 55px;
+    width: 80px;
+}

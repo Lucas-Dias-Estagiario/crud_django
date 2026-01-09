@@ -1,54 +1,44 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'pokedex/style.css' %}">
     <title>Pokedex - Detalhes</title>
-    <style>
-        /* Um CSS básico para não ficar tudo branco */
-        .card {
-            border: 1px solid #ddd;
-            padding: 20px;
-            width: 300px;
-            text-align: center;
-            border-radius: 10px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-            margin: 20px auto; /* Centraliza na tela */
-        }
-        .tipo {
-            background-color: #eee;
-            padding: 5px 10px;
-            border-radius: 15px;
-            margin: 2px;
-            display: inline-block;
-            text-transform: uppercase;
-            font-size: 12px;
-            font-weight: bold;
-        }
-    </style>
+
 </head>
 <body>
-
-    <h1 style="text-align: center;">Minha Pokedex</h1>
+    <div class="box_h1">
+        <h1>Minha Pokedex</h1>
+    </div>
 
     {% for pokemon in pokemons %}
-    
+    <div class="container">
+        <form action=" {% url "pokedex:anterior_pokemon" pokemon.id %}" method="GET"> {% csrf_token %}
+            <input type="submit" value="Voltar" class='btn_voltar' >
+            </form>
         <div class="card">
-            <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}" width="150">
+            <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}" class="imagen">
             
-            <h2>{{ pokemon.name|capfirst }}</h2>
+            <h2 class="nome_pokemon">{{ pokemon.name|capfirst }}</h2>
             
-            <p><strong>ID:</strong> #{{ pokemon.id }}</p>
+            <p class="id_pokemon"><strong>ID:</strong> #{{ pokemon.id }}</p>
             
-            <p>
+            <p class="tipo">
                 {% for tipo in pokemon.types %}
-                    <span class="tipo">{{ tipo }}</span>
+                    <span class="tipo">{{ tipo|capfirst }} </span>{% if not forloop.last%} - {% endif %}
                 {% endfor %}
             </p>
 
-            <p><strong>Altura:</strong> {{ pokemon.height }}</p>
-            <p><strong>Peso:</strong> {{ pokemon.weight }}</p>
+            <p class="altura"><strong >Altura:</strong> {{ pokemon.height }} Metros</p>
+            <p class="peso"><strong>Peso:</strong> {{ pokemon.weight }} KG</p>
         </div>
-
+        <form action=" {% url "pokedex:proximo_pokemon" pokemon.id %}" method="GET"> {% csrf_token %}
+            <input type="submit" value="avançar" class='btn_avancar'>
+    </div>
+    <form action=" {% url "pokedex:ultimo_pokemon" pokemon.id %}" method="GET"> {% csrf_token %}
+            <input type="submit" value="ultimo" class='btn_ultimo'>
+            </form>
     {% empty %}
         <p style="text-align: center;">Nenhum Pokémon encontrado com esse ID.</p>
         
