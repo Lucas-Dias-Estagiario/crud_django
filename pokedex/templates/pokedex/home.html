@@ -16,7 +16,7 @@
     <div class="container">
         <form action=" {% url "pokedex:anterior_pokemon" pokemon.id %}" method="GET"> {% csrf_token %}
             <input type="submit" value="Voltar" class='btn_voltar' >
-            </form>
+        </form>
         <div class="card">
             <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}" class="imagen">
             
@@ -35,10 +35,11 @@
         </div>
         <form action=" {% url "pokedex:proximo_pokemon" pokemon.id %}" method="GET"> {% csrf_token %}
             <input type="submit" value="avançar" class='btn_avancar'>
-    </div>
-    <form action=" {% url "pokedex:ultimo_pokemon" pokemon.id %}" method="GET"> {% csrf_token %}
+        </form>
+        </div>
+        <form  class="form_ultimo" action=" {% url "pokedex:ultimo_pokemon" pokemon.id %}" method="GET"> {% csrf_token %}
             <input type="submit" value="ultimo" class='btn_ultimo'>
-            </form>
+        </form>
     {% empty %}
         <p style="text-align: center;">Nenhum Pokémon encontrado com esse ID.</p>
         
